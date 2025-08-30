@@ -69,9 +69,6 @@ El pipeline ejecuta las siguientes etapas secuencialmente:
 4. Generación de visualización con centroides
 5. Carga de datos en PostgreSQL
 
-### 1.4. Discusión
-
-La arquitectura basada en Prefect permite un control granular sobre cada etapa del pipeline, facilitando el debugging y monitoreo. Los decoradores de reintentos aseguran robustez ante fallos temporales de red, mientras que el manejo de excepciones previene interrupciones inesperadas del flujo.
 
 ---
 
@@ -117,9 +114,6 @@ fin función
 
 El decorador se aplica a la tarea `load_data` y reporta tanto el tamaño en bytes como en una unidad legible (MB).
 
-### 2.4. Discusión
-
-La implementación de decoradores especializados para monitoreo permite una separación clara de responsabilidades, manteniendo el código de negocio limpio mientras se añade funcionalidad de observabilidad.
 
 ---
 
@@ -151,10 +145,6 @@ fin tarea
 La tarea produce un DataFrame limpio con 7 variables numéricas listo para clustering:
 - `area`, `perimeter`, `compactness`, `length_of_kernel`, `width_of_kernel`, `asymmetry_coefficient`, `length_of_kernel_groove`
 
-### 3.4. Discusión
-
-La separación de la transformación en una tarea dedicada facilita el mantenimiento y permite modificaciones futuras en el preprocessing sin afectar otras etapas del pipeline.
-
 ---
 
 ## 4. Challenge 4: Implementación de Clustering K-means
@@ -184,10 +174,6 @@ fin tarea
 ### 4.3. Resultados
 
 La tarea retorna el DataFrame enriquecido con una columna `cluster` y el modelo K-means entrenado, preparando los datos para visualización y almacenamiento.
-
-### 4.4. Discusión
-
-El uso de parámetros fijos (`random_state=42`) asegura reproducibilidad en los resultados, mientras que el retorno del modelo permite acceso a los centroides para visualización.
 
 ---
 
@@ -228,9 +214,6 @@ fin tarea
 
 La visualización muestra claramente la separación de los datos en 3 clusters distintos, con los centroides marcados prominentemente.
 
-### 5.4. Discusión
-
-La inclusión de centroides en la visualización proporciona insights valiosos sobre la calidad del clustering y la distribución de los datos, facilitando la interpretación de los resultados.
 
 ---
 
@@ -280,10 +263,6 @@ fin tarea
 ![Tabla de Salida](postgressOutput.png)
 
 La tabla se crea exitosamente con todos los datos del clustering, incluyendo un ID autoincremental y la asignación de cluster para cada registro.
-
-### 6.4. Discusión
-
-La integración con PostgreSQL dockerizado proporciona una solución escalable y portable para el almacenamiento de datos, facilitando el análisis posterior y la integración con otras herramientas de BI.
 
 ---
 
